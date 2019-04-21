@@ -26,6 +26,6 @@ exports.parseChordpro = (req, res) => {
         formatter = new ChordSheetJS.TextFormatter();
     }
   }
-  const disp =
-  res.send(song);
+  const disp = formatter.format(song);
+  res.send(disp);
 };
