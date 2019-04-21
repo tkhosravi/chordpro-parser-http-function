@@ -11,5 +11,21 @@ const ChordSheetJS = require('chordsheetjs');
 exports.parseChordpro = (req, res) => {
   const chordSheet = req.body;
   const parser = new ChordSheetJS.ChordProParser();
-  res.send(parser.parse(chordSheet));
+  const song = parser.parse(chordSheet);
+  var formatter;
+  if (req.query.format) {
+    const format = req.query.format.toLowerCase();
+    switch (format) {
+      case "html","htmldiv":
+        formatter = new ChordSheetJS.HtmlDivFormatter();
+        break;
+      case "htmltable":
+        formatter = new ChordSheetJS.HtmlTableFormatter();
+        break;
+      default:
+        formatter = new ChordSheetJS.TextFormatter();
+    }
+  }
+  const disp =
+  res.send(song);
 };
