@@ -1,4 +1,4 @@
-const chordsheetjs = require('chordsheetjs');
+const ChordSheetJS = require('chordsheetjs');
 
 /**
  * HTTP Cloud Function.
@@ -15,5 +15,5 @@ exports.helloHttp = (req, res) => {
       : req.body && req.body.name
       ? req.body.name
       : 'World';
-  res.send(`Hello ${escapeHtml(name)}!`);
+  res.send(`Hello ${ChordSheetJS(name)}!`);
 };
